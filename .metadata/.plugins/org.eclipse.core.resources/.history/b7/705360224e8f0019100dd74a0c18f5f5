@@ -1,0 +1,428 @@
+package com.bridgelabz.java8.datetime;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+public class DateTime {
+
+	public static void main(String[] args) {
+		
+//		LocalDate localDate = LocalDate.now();
+//		LocalTime localTime = LocalTime.of(12, 20);
+//		LocalDateTime localDateTime = LocalDateTime.now();
+//		OffsetDateTime offsetDateTime = OffsetDateTime.now();
+//		ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
+//		
+//		System.out.println(localDate);
+//		System.out.println(localTime);
+//		System.out.println(localDateTime);
+//		System.out.println(offsetDateTime);
+//		System.out.println(zonedDateTime);
+	
+		opencodez
+		 
+		Java
+		Web Development
+		Salesforce
+		Free WP Themes
+		How To Guide
+		Software Testing
+		Write & Earn
+		 Home / Java / Learn 7 Most Important Java8 Features with Easy Examples
+		Learn 7 Most Important Java8 Features with Easy Examples
+		 Pavan  February 19, 2018  Java  1 Comment
+		It’s been a long time since Java 8 has been introduced. Java 9 and 10 are already becoming the talk of the town. So its time to learn Java 8 Features with some easy Examples.
+
+
+		 
+		Below are Most Important 7 Features we are going to learn in this article :
+
+		Lambda Expressions
+		Default Methods
+		Date and Time API
+		Streams
+		forEach() Method
+		Type Annotations
+		Repeating Annotations
+		Lambda Expressions
+		one of the famous feature introduced in Java 8. Lambdas treat functionality as a method argument or code as data. Lambda expressions allow you to present your code more compactly.
+
+		For demonstration let us see a basic sorting example to check lambdas. Let us write a simple class to store some data for Employee:
+
+		Java
+		public class Employee {
+			
+			private int id;
+			private String name;
+			private double salary;
+
+			public Employee(int id, String name, double salary) {
+				this.id = id;
+				this.name = name;
+				this.salary = salary;
+			}
+			
+			//Getters & Setters
+		}
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		10
+		11
+		12
+		13
+		14
+		public class Employee {
+		 
+		 private int id;
+		 private String name;
+		 private double salary;
+		 
+		 public Employee(int id, String name, double salary) {
+		 this.id = id;
+		 this.name = name;
+		 this.salary = salary;
+		 }
+		 
+		 //Getters & Setters
+		}
+		Standard Comparator
+
+		Comparator<Employee> sortByName = new Comparator<Employee>() {
+			@Override
+			public int compare(Employee e1, Employee e2) {
+				return e1.getName().compareTo(e2.getName());
+			}
+		};
+		1
+		2
+		3
+		4
+		5
+		6
+		Comparator<Employee> sortByName = new Comparator<Employee>() {
+		 @Override
+		 public int compare(Employee e1, Employee e2) {
+		 return e1.getName().compareTo(e2.getName());
+		 }
+		};
+		Lambda Equivalent
+
+		Comparator<Employee> lambdaSortByName = 
+				(Employee e1, Employee e2) -> e1.getName().compareTo(e2.getName());
+		1
+		2
+		Comparator<Employee> lambdaSortByName = 
+		 (Employee e1, Employee e2) -> e1.getName().compareTo(e2.getName());
+		Sorting
+
+		// Initial data
+		ArrayList<Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(500, "Shifoo", 150000));
+		list.add(new Employee(504, "Oogway", 120000));
+		list.add(new Employee(503, "Tigress", 100000));
+		list.add(new Employee(730, "Mantis", 45000));
+
+		System.out.println("Initial List :");
+		list.forEach(System.out::println);
+
+		//sortByName already defined in above snippet
+		Collections.sort(list, sortByName);
+		System.out.println("\nStandard Sorted by Name :");
+		list.forEach(System.out::println);
+
+		//lambdaSortByName already defined in above snippet
+		list.sort(lambdaSortByName);
+		System.out.println("\nLambda Sorted by Name :");
+		list.forEach(System.out::println);
+
+		Comparator<Employee> lambdaSortById = (Employee e1, Employee e2) -> e1.getId() - e2.getId();
+		list.sort(lambdaSortById);
+
+		System.out.println("\nSorted by Id :");
+		list.forEach(System.out::println);
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		10
+		11
+		12
+		13
+		14
+		15
+		16
+		17
+		18
+		19
+		20
+		21
+		22
+		23
+		24
+		25
+		// Initial data
+		ArrayList<Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(500, "Shifoo", 150000));
+		list.add(new Employee(504, "Oogway", 120000));
+		list.add(new Employee(503, "Tigress", 100000));
+		list.add(new Employee(730, "Mantis", 45000));
+		 
+		System.out.println("Initial List :");
+		list.forEach(System.out::println);
+		 
+		//sortByName already defined in above snippet
+		Collections.sort(list, sortByName);
+		System.out.println("\nStandard Sorted by Name :");
+		list.forEach(System.out::println);
+		 
+		//lambdaSortByName already defined in above snippet
+		list.sort(lambdaSortByName);
+		System.out.println("\nLambda Sorted by Name :");
+		list.forEach(System.out::println);
+		 
+		Comparator<Employee> lambdaSortById = (Employee e1, Employee e2) -> e1.getId() - e2.getId();
+		list.sort(lambdaSortById);
+		 
+		System.out.println("\nSorted by Id :");
+		list.forEach(System.out::println);
+		Output
+
+		Initial List :
+		500, Shifoo, 150000.0
+		504, Oogway, 120000.0
+		503, Tigress, 100000.0
+		730, Mantis, 45000.0
+
+		Standard Sorted by Name :
+		730, Mantis, 45000.0
+		504, Oogway, 120000.0
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+
+		Lambda Sorted by Name :
+		730, Mantis, 45000.0
+		504, Oogway, 120000.0
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+
+		Sorted by Id :
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+		504, Oogway, 120000.0
+		730, Mantis, 45000.0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		10
+		11
+		12
+		13
+		14
+		15
+		16
+		17
+		18
+		19
+		20
+		21
+		22
+		23
+		Initial List :
+		500, Shifoo, 150000.0
+		504, Oogway, 120000.0
+		503, Tigress, 100000.0
+		730, Mantis, 45000.0
+		 
+		Standard Sorted by Name :
+		730, Mantis, 45000.0
+		504, Oogway, 120000.0
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+		 
+		Lambda Sorted by Name :
+		730, Mantis, 45000.0
+		504, Oogway, 120000.0
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+		 
+		Sorted by Id :
+		500, Shifoo, 150000.0
+		503, Tigress, 100000.0
+		504, Oogway, 120000.0
+		730, Mantis, 45000.0
+		You can also see adding different comparison criteria is easy and compact. The above example also points out other improvements added in Java 8. But we will discuss them later in the article.
+
+		Default Methods
+		From Java 8 onwards your interfaces can have method implementations as well. These implementations are defined with keyword default. The class implementing the interface can access these methods or they can even override the default methods.
+
+		We will define sample interfaces for Printer and Scanner.
+
+		Java
+		public class DefaultMethodsTest {
+
+			public static void main(String args[]) {
+				Printer printer = new PrinterAndScanner();
+				printer.print();
+			}
+		}
+
+		interface Printer {
+			default void print() {
+				System.out.println("I can print!");
+			}
+		}
+
+		interface Scanner {
+			default void scan() {
+				System.out.println("I can scan!");
+			}
+		}
+
+		class PrinterAndScanner implements Printer, Scanner {
+			public void print() {
+				Scanner.super.scan();
+				Printer.super.print();
+			}
+		}
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		10
+		11
+		12
+		13
+		14
+		15
+		16
+		17
+		18
+		19
+		20
+		21
+		22
+		23
+		24
+		25
+		26
+		public class DefaultMethodsTest {
+		 
+		 public static void main(String args[]) {
+		 Printer printer = new PrinterAndScanner();
+		 printer.print();
+		 }
+		}
+		 
+		interface Printer {
+		 default void print() {
+		 System.out.println("I can print!");
+		 }
+		}
+		 
+		interface Scanner {
+		 default void scan() {
+		 System.out.println("I can scan!");
+		 }
+		}
+		 
+		class PrinterAndScanner implements Printer, Scanner {
+		 public void print() {
+		 Scanner.super.scan();
+		 Printer.super.print();
+		 }
+		}
+		In above, we see that class PrinterAndScanner scans and prints. Thus it combines the functionality of two different types of machines.
+
+		The default methods will not break any old instances of the interface.
+
+		Date and Time API
+		Java 8 comes with a new date-time API under the package java.time. The new API is thread safe. Out of whole new classes under this new API, you may want to know few first like LocalDate, LocalTime, LocalDateTime, DateTimeFormatter
+
+		// Current Date
+		LocalDate today = LocalDate.now();
+		System.out.println("Current Date = " + today);
+
+		LocalDate todayNewYork = LocalDate.now(ZoneId.of("America/New_York"));
+		System.out.println("Current Date in America = " + todayNewYork);
+
+		// Current Time
+		LocalTime time = LocalTime.now();
+		System.out.println("Current Time = " + time);
+
+		LocalTime timeNewYork = LocalTime.now(ZoneId.of("America/New_York"));
+		System.out.println("Current Time in America = " + timeNewYork);
+
+		// Current Date
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println("Current DateTime = " + now);
+
+		System.out.println(now.format(DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss")));
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		10
+		11
+		12
+		13
+		14
+		15
+		16
+		17
+		18
+		19
+		// Current Date
+		LocalDate today = LocalDate.now();
+		System.out.println("Current Date = " + today);
+		 
+		LocalDate todayNewYork = LocalDate.now(ZoneId.of("America/New_York"));
+		System.out.println("Current Date in America = " + todayNewYork);
+		 
+		// Current Time
+		LocalTime time = LocalTime.now();
+		System.out.println("Current Time = " + time);
+		 
+		LocalTime timeNewYork = LocalTime.now(ZoneId.of("America/New_York"));
+		System.out.println("Current Time in America = " + timeNewYork);
+		 
+		// Current Date
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println("Current DateTime = " + now);
+		 
+		System.out.println(now.format(DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss")))
+	
+	}
+
+}

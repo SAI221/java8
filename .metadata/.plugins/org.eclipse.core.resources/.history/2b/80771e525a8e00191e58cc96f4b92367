@@ -1,0 +1,8 @@
+package com.bridgelabz.java8.lambdaexpression;
+
+@FunctionalInterface
+public interface LambdaExample {
+
+	public String hello(int a, int b);
+
+}

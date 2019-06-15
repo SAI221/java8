@@ -1,0 +1,13 @@
+package com.bridgelabz.java8.lambdaexpression;
+
+public class LambdaMain {
+	
+	public static void main(String[] args) {
+       LambdaExample lambda =() ->{
+       return "hello";
+       };
+       
+       System.out.println(lambda.hello());
+	}
+
+}

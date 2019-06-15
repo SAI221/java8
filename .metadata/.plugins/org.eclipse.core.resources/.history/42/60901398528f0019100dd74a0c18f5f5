@@ -1,0 +1,23 @@
+package com.bridgelabz.java8.streams;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StreamsFeatures {
+	
+	List<String> list=new ArrayList<String>();
+
+	public static void main(String[] args) {
+		
+		stream.forEach(System.out::println);
+		
+		list.stream().filter(element -> element.contains("P"));
+		
+		boolean isValid = list.stream().anyMatch(element -> element.contains("P"));
+		
+		List<String> results 
+		  = list.stream().map(element -> element.toUpperCase()).collect(Collectors.toList());
+
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.bridgelabz.java8.lambdaexpression;
+
+public class LambdaIterator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

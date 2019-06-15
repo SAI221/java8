@@ -1,0 +1,5 @@
+package com.bridgelabz.java8.defaultmethods;
+
+public interface MyInterface {
+
+}
